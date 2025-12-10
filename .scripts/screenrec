@@ -1,0 +1,64 @@
+#!/bin/bash
+
+LOCKFILE="/tmp/screenrec.lock"
+
+# If recording is already running → STOP it
+if [[ -f "$LOCKFILE" ]]; then
+    PID=$(cat "$LOCKFILE")
+    if ps -p "$PID" > /dev/null; then
+        kill "$PID"
+        notify-send "Recording Stopped" "Your screen recording has been stopped."
+        rm "$LOCKFILE"
+        exit 0
+    else
+        rm "$LOCKFILE"  # Clean stale lockfile
+    fi
+fi
+
+# --- START NEW RECORDING ---
+
+# Check if ffmpeg is installed
+if ! command -v ffmpeg &> /dev/null; then
+    notify-send "Error" "FFmpeg is not installed."
+    exit 1
+fi
+
+# Check if notify-send exists
+if ! command -v notify-send &> /dev/null; then
+    echo "Error: notify-send is not installed. Install: sudo apt install libnotify-bin"
+    exit 1
+fi
+
+# Base filename
+base_filename="$HOME/output"
+extension=".mkv"
+filename="${base_filename}${extension}"
+
+# Check for existing files and increment filename
+n=1
+while [[ -f "$filename" ]]; do
+    filename="${base_filename}_${n}${extension}"
+    ((n++))
+done
+
+# Recording settings
+RESOLUTION="1920x1080"
+FRAMERATE=24
+AUDIO_DEVICE="default"
+CPU_THREADS=2
+PRESET="veryfast"
+
+notify-send "Recording Started" "Saving to: $filename"
+
+# Start ffmpeg in background
+ffmpeg -y \
+-f x11grab \
+-s "$RESOLUTION" \
+-i :0.0 \
+-f alsa -i "$AUDIO_DEVICE" \
+-c:v libx264 -preset "$PRESET" -r "$FRAMERATE" -threads "$CPU_THREADS" \
+-c:a flac "$filename" &
+
+# Save PID in lockfile
+echo $! > "$LOCKFILE"
+
