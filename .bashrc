@@ -89,6 +89,7 @@ alias de="cd ~/Desktop"
 alias nv="nvim"
 alias conf="vim $HOME/.config/i3/config"
 alias ec="echo"
+alias cp="cp -iv"
 #alias ccat='highlight --out-format=ansi'  # cat with syntax highlighting
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
