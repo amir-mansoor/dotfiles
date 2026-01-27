@@ -54,6 +54,9 @@ for_window [title="video0 - mpv"] floating enable
 for_window [title="video0 - mpv"] sticky enable
 
 
+
+
+
 # Screen Record
 bindsym $mod+q          exec --no-startup-id /home/mansoor/.config/.scripts/screenrec
 
@@ -190,64 +193,45 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# ===== Glassy i3 Color Scheme =====
+set $bg-color 			#2f343f
+set $inactive-bg-color 		#2f343f
+set $text-color 		#f3f4f5
+set $inactive-text-color 	#676E7D
+set $urgent-bg-color 		#E53935
 
-# Backgrounds (glassy dark)
-set $bg-color              #0f1117
-set $inactive-bg-color     #0b0d12
-
-# Text
-set $text-color            #e6e9ef
-set $inactive-text-color   #7f849c
-
-# Accents
-set $accent-color          #89b4fa   
-set $urgent-bg-color       #f38ba8
-
-# Borders
-set $border-color          #1e2230
-
-
-# class                 border          background        text              indicator        child_border
-client.focused          $accent-color   $bg-color         $text-color       $accent-color    $accent-color
-
-client.unfocused        $border-color   $inactive-bg-color $inactive-text-color $border-color $border-color
-
-client.focused_inactive #2a2f3e         $inactive-bg-color $inactive-text-color #2a2f3e        #2a2f3e
-
-client.urgent           $urgent-bg-color $urgent-bg-color $text-color       $urgent-bg-color $urgent-bg-color
-
-
-
+#				    border			backroung		                    text		        indicator
+client.focused      #f39c12		    $bg-color     	$bg-color    		$text-color		        #f39c12
+client.unfocused		        $inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
+client.focused_inactive		    $inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
+client.urgent			        $urgent-bg-color	$urgent-bg-color	$text-color		        #00ff00
 
  
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    position top
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    mode dock
-    modifier None
+bar {   
+	position top
+  #status_command i3blocks
+   status_command  i3blocks -c ~/.config/i3/i3blocks.conf
+	mode dock
+	modifier None
+        colors {
+		background $bg-color
+		separator  #757575
+		#			border			background		text
+		#focused_workspace	$bg-color		$bg-color		$text-color
+		#inactice_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
+		#urgent_workspace	$urgent-bg-color	$urgent-bg-color	$text-color
 
-    colors {
-        background $bg-color
-        separator  #2a2f3e
-
-        focused_workspace     $accent-color $accent-color $bg-color
-        active_workspace      #1e2230       #1e2230       $text-color
-        inactive_workspace    $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace      $urgent-bg-color $urgent-bg-color $bg-color
-    }
+        }
 }
-
 
 # My Personal Customized Scripts
 bindsym $mod+shift+o exec $term -e ranger
-bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/glassy.rasi
+bindsym $mod+d exec rofi -show run
 bindsym $mod+c exec --no-startup-id /home/mansoor/.config/.scripts/camtoggle 
 #exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
-#exec_always compton 
-exec_always --no-startup-id compton --config ~/.config/compton.conf
+exec_always compton 
+#exec --no-startup-id compton --config ~/.config/compton.conf
 exec_always feh --bg-scale /home/mansoor/Pictures/wallpaper.png
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 

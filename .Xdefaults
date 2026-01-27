@@ -1,45 +1,75 @@
+! -------------------------
+! URxvt – Glassy Dark Theme
+! -------------------------
+
 *.boldFont:
 *.geometry:130x45
 *.internalBorder:20
 *.letterSpace: -2
 
-*foreground: #00cc00
-*foreground_bold: #a8a19f
-*cursor: #a8a19f
-*background:       #1b1918
-!!*background: rgba(0, 0, 0, .7)
-
-!! black
-*color0: #1b1918
-*color8: #766e6b
-!! red
-*color1: #f22c40
-*color9: #f22c40
-!! green
-*color2: #5ab738
-*color10: #5ab738
-!! yellow
-*color3: #d5911a
-*color11: #d5911a
-!! blue
-*color4: #407ee7
-*color12: #407ee7
-!! magenta
-*color5: #6666ea
-*color13: #6666ea
-!! cyan
-*color6: #00ad9c
-*color14: #00ad9c
-!! white
-*color7: #a8a19f
-*color15: #f1efee
+! URxvt*background:        [85]#0f1117
+URxvt*foreground:        #e6e9ef
+URxvt*cursorColor:       #89b4fa
 
 URxvt.intensityStyles:	false
 URxvt.background:       [70]#000000
 URxvt.depth:		32
 URxvt.font: 		xft:Hack Nerd Font Mono:size=15
-URxvt.scrollBar:	false
-URxvt.cursorColor:	gray
+
+! Transparency
+URxvt*depth:             32
+URxvt*transparent:       true
+URxvt*shading:           10
+
+! Border / internal padding
+URxvt*internalBorder:    10
+URxvt*borderColor:       #1e2230
+
+! Font rendering (important for “glassy” feel)
+URxvt*antialias:         true
+URxvt*hinting:           true
+URxvt*letterSpace:       -1
+
+! Scrollbar off (clean look)
+URxvt*scrollBar:         false
+URxvt*scrollBar_right:   false
+
+
+! -------------------------
+! Colors
+! -------------------------
+
+! black
+URxvt*color0:  #0b0d12
+URxvt*color8:  #1e2230
+
+! red (urgent)
+URxvt*color1:  #f38ba8
+URxvt*color9:  #f38ba8
+
+! green
+URxvt*color2:  #a6e3a1
+URxvt*color10: #a6e3a1
+
+! yellow
+URxvt*color3:  #f9e2af
+URxvt*color11: #f9e2af
+
+! blue (accent)
+URxvt*color4:  #89b4fa
+URxvt*color12: #89b4fa
+
+! magenta
+URxvt*color5:  #cba6f7
+URxvt*color13: #cba6f7
+
+! cyan
+URxvt*color6:  #94e2d5
+URxvt*color14: #94e2d5
+
+! white
+URxvt*color7:  #e6e9ef
+URxvt*color15: #ffffff
 
 !! Extensions
 URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
@@ -59,23 +89,6 @@ URxvt.keysym.C-equal:     resize-font:reset
 URxvt.url-launcher:	linkhandler
 URxvt.matcher.button:	1
 
-rofi.theme:         dmenu.rasi
-rofi.color-enabled:	true
-rofi.color-window:	#000, #000, #000
-rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
-rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
-rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
-
-rofi.fake-transparency:	false
-rofi.lines:		3
-rofi.bw:		0
-rofi.opacity:		"10"
-rofi.hide-scrollbar:	true
-rofi.width:		30
-
-URxvt.iso14755:        false
-URxvt.iso14755_52:     false
-
 ! Disable Ctrl-Alt-c & Ctrl-Alt-v bindings (optional)
 URxvt.keysym.C-M-c:    builtin-string:
 URxvt.keysym.C-M-v:    builtin-string:
@@ -84,3 +97,4 @@ URxvt.keysym.C-M-v:    builtin-string:
 ! I dont know why, but I needed to use hex keysym values to get it to work
 URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
 URxvt.keysym.C-S-0x56: eval:paste_clipboard
+
