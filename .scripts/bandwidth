@@ -1,0 +1,9 @@
+#!/bin/bash
+
+awk 'NR>2 {
+    rx += $2
+    tx += $10
+}
+END {
+    printf "↓ %.1fM ↑ %.1fM\n", rx/1048576, tx/1048576
+}' /proc/net/dev

@@ -2,7 +2,7 @@
 
 # Usage: ./brightness.sh up|down
 # Increment step
-STEP=1
+STEP=10
 
 # Current brightness
 CURRENT_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
