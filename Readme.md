@@ -2,7 +2,7 @@
 
 These are all my dotfiles to my own customized rice. Here's a screenshot: 
 
-<img src="2024-02-05-143341_1024x768_scrot.png" />
+<img src="screenshot/2024-02-05-143341_1024x768_scrot.png" />
 
 # Motivation
 
